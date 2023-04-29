@@ -10,6 +10,7 @@ datasource db {
 
 model User {
     username String   @id
+    fullname String
     type     UserType @default(USER)
 }
 
