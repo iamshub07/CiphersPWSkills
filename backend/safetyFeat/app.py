@@ -1,26 +1,15 @@
 import streamlit as st
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import load_img,img_to_array
+from PIL import Image
 import pandas as pd
 import numpy as np
-import datetime
 import matplotlib.pyplot as plt
 
 st.title("Safety Features")
 decision = st.sidebar.radio("Choose",("Driver background Check","Vehicel Inspection","Insurance Coverage"))
 
 if decision=="Vehicel Inspection":
-    image = st.file_uploader("Upload the Car/Vehicle Image")
-    if image:
-        model = load_model("classifier.h5")
-        img = load_img(image,target_size = (150,150,3))
-        x = img_to_array(img)
-        x = np.expand_dims(x,axis=0)
-
-        target = model.predict(x)
-        target = np.argmax(target)
-        st.title(target)
-        
+    st.header("Check the Vehicle condition")
+    st.markdown("[HuggingFace Space](https://huggingface.co/spaces/lucifertrj/joyride)")
     view_btn = st.button("View Vehical Inspection Report")
     
     if view_btn:
@@ -71,5 +60,17 @@ elif decision == 'Driver background Check':
                 mime="image/png"
             )
 else:
-    life_btn = st.button()
-    auto_btn = st.button()
+    with open("insurance/live.pdf", "rb") as file:
+        btn = st.download_button(
+                label="Download Life Insurance Coverage",
+                data=file,
+                file_name="live.pdf",
+                mime="application/pdf"
+            )
+    with open("insurance/auto.pdf", "rb") as file:
+        btn = st.download_button(
+                label="Download Auto Insurance Coverage",
+                data=file,
+                file_name="auto.pdf",
+                mime="application/pdf"
+            )
