@@ -3,9 +3,7 @@
 
 Domain : **Hybrid** (Web Development + Data Science)
 
-<video auto-play="true" loop="loop" muted="muted" plays-inline="true">
-  <source src="https://user-images.githubusercontent.com/75177362/235335377-5cd1ca56-ab43-4b10-959f-aff922ae6c34.mp4" type="video/mp4">
-</video>
+https://user-images.githubusercontent.com/75177362/235335377-5cd1ca56-ab43-4b10-959f-aff922ae6c34.mp4
 
 ## Problem Statement
 
