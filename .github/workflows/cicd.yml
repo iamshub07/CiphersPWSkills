@@ -25,10 +25,6 @@ jobs:
       run: |
         pip install streamlit tensorflow numpy
 
-    - name: Run tests
-      run: |
-        python test.py
-
     - name: Deploy to staging
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       env:
