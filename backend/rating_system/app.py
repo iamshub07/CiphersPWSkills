@@ -6,7 +6,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 app = Flask(__name__)
 
-df = pd.read_csv("data/comcast_consumeraffairs_complaints.csv")
+df = pd.read_csv("comcast_consumeraffairs_complaints.csv")
 df.dropna(inplace=True)
 df = df[df['rating']!=0]
 df = df[df['rating'] != 1]
@@ -29,13 +29,20 @@ def home():
 def cluster():
     new_text = [request.form['message']]
     new_X = vectorizer.transform(new_text)
-    combined_X = pd.concat([pd.DataFrame(X.toarray()), pd.DataFrame(new_X.toarray())])
-    new_model = KMeans(n_clusters=5)
-    new_model.fit(combined_X)
-    new_text_label = new_model.predict(new_X)[0]
+
+    # Train the model on the original dataset
+    model = KMeans(n_clusters=5)
+    model.fit(X)
+
+    # Predict the cluster label of the test instance
+    new_text_label = model.predict(new_X)[0]
+
+    # Find the top 3 comments similar to the test instance
     similarity_scores = model.transform(new_X)
     top_3_indices = similarity_scores.argsort()[0][:3]
     top_3_comments = df.iloc[top_3_indices]['text'].tolist()
+
+    # Find the most similar comment in the same cluster as the test instance
     similar_message = df[model.labels_ == new_text_label]['text'].iloc[0]
     
     sentiment_scores = []
@@ -50,3 +57,4 @@ def cluster():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
