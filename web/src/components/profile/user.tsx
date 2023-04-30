@@ -56,7 +56,6 @@ const UserProfile = () => {
 
   const localStorageUserName =
     typeof window !== "undefined" ? localStorage.getItem("username") : null;
-  console.log(localStorageUserName);
   const user = localStorageUserName
     ? api.user.get.useQuery(
         {
@@ -76,7 +75,7 @@ const UserProfile = () => {
     return <div>Error...</div>;
   }
 
-  const chatTranslate = api.google.get.useQuery({
+  const chatTranslate = api.google.chats.useQuery({
     chats: chats.map((v) => v.msg),
   });
 

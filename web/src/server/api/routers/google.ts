@@ -3,6 +3,8 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import axios from "axios";
 
+import { env } from "@/env.mjs";
+
 export const googleRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
@@ -11,7 +13,46 @@ export const googleRouter = createTRPCRouter({
         greeting: `Hello ${input.text}`,
       };
     }),
-  get: publicProcedure
+  search: publicProcedure
+    .input(z.object({ search: z.string() }))
+    .query(({ input }) => {
+      const url =
+        "https://www.google.com/maps/embed/v1/place?key=" +
+        env.GMAP_KEY +
+        "&q=" +
+        input.search;
+      console.log(url);
+      return url;
+    }),
+  route: publicProcedure
+    .input(z.object({ origin: z.string(), destination: z.string() }))
+    .query(async ({ input }) => {
+      const res = await axios.get(
+        `http://anmolmunnolli.pythonanywhere.com/route?origin=${input.origin}&destination=${input.destination}`
+      );
+      const maplink = res.data as string;
+      const queryI = maplink.indexOf("&origin");
+      const query = maplink.slice(queryI);
+      const url =
+        "https://www.google.com/maps/embed/v1/directions?key=" +
+        env.GMAP_KEY +
+        query;
+
+      return url;
+    }),
+  ride: publicProcedure
+    .input(z.object({ origin: z.string() }))
+    .query(async ({ input }) => {
+      const res = await axios.get(
+        `http://anmolmunnolli.pythonanywhere.com/ride?origin=${input.origin}`
+      );
+      const maplink = res.data as string;
+      const queryI = maplink.indexOf("&origin");
+      const query = maplink.slice(queryI);
+      console.log(query);
+      return query;
+    }),
+  chats: publicProcedure
     .input(
       z.object({
         chats: z.array(z.string()),

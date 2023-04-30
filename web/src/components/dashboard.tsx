@@ -10,7 +10,6 @@ const Dashboard = () => {
 
   const localStorageUserName =
     typeof window !== "undefined" ? localStorage.getItem("username") : null;
-  console.log(localStorageUserName);
   const user = localStorageUserName
     ? api.user.get.useQuery(
         {

@@ -1,3 +1,5 @@
+import { api } from "@/utils/api";
+
 const Map = ({
   search,
   mode,
@@ -10,19 +12,34 @@ const Map = ({
   destination: string;
 }) => {
   if (mode === "search") {
+    const searchResult = api.google.search.useQuery(
+      {
+        search,
+      },
+      { refetchOnMount: false, refetchOnWindowFocus: false }
+    );
+    if (!searchResult.data) return <div>Loading...</div>;
     return (
       <iframe
         className="h-full w-full border-none"
         loading="lazy"
-        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAv-bbfkhKhpZM3nK7SWqQbgCei3ryZbwE&q=${search}`}
+        src={searchResult.data}
       ></iframe>
     );
   } else if (mode === "directions") {
+    const route = api.google.route.useQuery(
+      {
+        origin: origin,
+        destination: destination,
+      },
+      { refetchOnMount: false, refetchOnWindowFocus: false }
+    );
+    if (!route.data) return <div>Loading...</div>;
     return (
       <iframe
         className="h-full w-full border-none"
         loading="lazy"
-        src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyAv-bbfkhKhpZM3nK7SWqQbgCei3ryZbwE&origin=${origin}&destination=${destination}&mode=driving`}
+        src={route.data}
       ></iframe>
     );
   }
