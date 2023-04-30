@@ -70,7 +70,8 @@ docker run -p 3000:3000 joyride
 
 **Team Name - Ciphers**  
 
-Team members are :  https://www.qrfy.com
+Team members are : 
+
 [1. Tarun Jain](https://github.com/lucifertrj)  
 [2. Anmol Munnolli](https://github.com/anmolmunnolli)  
 [3. Mukul Singh](https://github.com/Z0XM)  
