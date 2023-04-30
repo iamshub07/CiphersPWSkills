@@ -66,7 +66,17 @@ const UserProfile = () => {
     : null;
 
   if (!user || user.isLoading || user.isFetching) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <Image
+          className="animate-spin"
+          src="/svg/loading-green.svg"
+          alt="loading"
+          width={50}
+          height={50}
+        />
+      </div>
+    );
   }
 
   if (user.isError || !user.data) {
@@ -505,12 +515,13 @@ const UserProfile = () => {
 
         {!showChat && (
           <Map
-            mode={mapMode}
+            mode={bookingState === "onway" ? "rider" : mapMode}
             origin={pickRef.current?.value.replaceAll(" ", "%20") ?? ""}
             destination={destRef.current?.value.replaceAll(" ", "%20") ?? ""}
             search={mapSearch.replaceAll(" ", "%20")}
           />
         )}
+
         {showChat && (
           <div className="absolute bottom-0 z-10 flex w-full flex-col gap-4 p-8">
             {chats.map((v, i) => {
@@ -572,7 +583,7 @@ const UserProfile = () => {
                 }}
               >
                 <Image
-                  src="/svg/chat.svg"
+                  src="/png/translate.png"
                   alt="send"
                   className="mr-8"
                   width={22}

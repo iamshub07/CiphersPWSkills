@@ -21,7 +21,6 @@ export const googleRouter = createTRPCRouter({
         env.GMAP_KEY +
         "&q=" +
         input.search;
-      console.log(url);
       return url;
     }),
   route: publicProcedure
@@ -49,7 +48,13 @@ export const googleRouter = createTRPCRouter({
       const maplink = res.data as string;
       const queryI = maplink.indexOf("&origin");
       const query = maplink.slice(queryI);
-      console.log(query);
+      const url =
+        "https://www.google.com/maps/embed/v1/directions?key=" +
+        env.GMAP_KEY +
+        query;
+
+      return url;
+
       return query;
     }),
   chats: publicProcedure

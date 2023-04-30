@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import UserProfile from "./profile/user";
 import { UserType } from "@prisma/client";
 import DriverProfile from "./profile/driver";
+import Image from "next/image";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -20,7 +21,17 @@ const Dashboard = () => {
     : null;
 
   if (!user || user.isLoading || user.isFetching) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <Image
+          className="animate-spin"
+          src="/svg/loading-green.svg"
+          alt="loading"
+          width={50}
+          height={50}
+        />
+      </div>
+    );
   }
 
   if (user.isError || !user.data) {
