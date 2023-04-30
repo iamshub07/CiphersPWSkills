@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import axios from "axios";
 
 const UserProfile = () => {
   const router = useRouter();
@@ -33,9 +34,25 @@ const UserProfile = () => {
   const pickRef = useRef<HTMLInputElement>(null);
   const destRef = useRef<HTMLInputElement>(null);
 
+  const chatRef = useRef<HTMLInputElement>(null);
+
   const [mapSearch, setMapSearch] = useState("Signature Brigade, Bangalore");
   const [mapMode, setMapMode] = useState<"search" | "directions">("search");
+
   const [showChat, setShowChat] = useState<boolean>(false);
+  const [chats, setChats] = useState<
+    { msg: string; self: boolean; translation?: string }[]
+  >([
+    {
+      msg: "Hello, sir. I am on my way to pick you up at the address",
+      self: false,
+    },
+    {
+      msg: "Hello! okay. I am waiting for you at the pickup location.",
+      self: true,
+    },
+  ]);
+  const [translateState, setTranslateState] = useState<boolean>(false);
 
   const localStorageUserName =
     typeof window !== "undefined" ? localStorage.getItem("username") : null;
@@ -58,6 +75,10 @@ const UserProfile = () => {
     router.push("/");
     return <div>Error...</div>;
   }
+
+  const chatTranslate = api.google.get.useQuery({
+    chats: chats.map((v) => v.msg),
+  });
 
   return (
     <main className="flex h-[90vh] w-screen flex-row text-sm">
@@ -493,28 +514,72 @@ const UserProfile = () => {
         )}
         {showChat && (
           <div className="absolute bottom-0 z-10 flex w-full flex-col gap-4 p-8">
-            <div className="flex w-full justify-start">
-              <div className="w-[70%] rounded-lg border-2 border-gray-200 p-4">
-                Hello, sir. I am on my way to pick you up at the address
-              </div>
-            </div>
-            <div className="flex w-full justify-end">
-              <div className="right-0 w-[70%] rounded-lg border-2 border-joy-green p-4">
-                Hello! okay. I am waiting for you at the pickup location.
-              </div>
-            </div>
+            {chats.map((v, i) => {
+              return (
+                <div
+                  key={i}
+                  className={`flex w-full ${
+                    v.self ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`w-[70%] rounded-lg border-2 ${
+                      v.self ? "border-joy-green" : "border-gray-200"
+                    } p-4`}
+                  >
+                    {translateState ? v.translation : v.msg}
+                  </div>
+                </div>
+              );
+            })}
+
             <div className="mt-8 flex flex-row rounded-lg border-2 border-gray-200 focus:border-joy-green">
               <input
-                className="h-full w-full flex-1 rounded-lg border-none p-4 outline-none"
+                ref={chatRef}
+                className="h-full w-full flex-1 rounded-lg border-none p-4 outline-none focus:border-joy-green"
                 placeholder="Type your message here"
               />
-              <Image
-                src="/svg/msg.svg"
-                alt="send"
-                className="mr-8"
-                width={22}
-                height={22}
-              />
+              <button
+                onClick={() => {
+                  if (chatRef.current?.value) {
+                    setChats((old) => {
+                      return [
+                        ...old,
+                        { msg: chatRef.current?.value || "Z0XM", self: true },
+                      ];
+                    });
+                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                    chatTranslate.refetch();
+                  }
+                }}
+              >
+                <Image
+                  src="/svg/msg.svg"
+                  alt="send"
+                  className="mr-8"
+                  width={22}
+                  height={22}
+                />
+              </button>
+              <button
+                onClick={() => {
+                  setTranslateState((_) => !_);
+                  if (!chatTranslate.data) return;
+                  setChats((old) => {
+                    return old.map((v, i) => {
+                      return { ...v, translation: chatTranslate.data[i] };
+                    });
+                  });
+                }}
+              >
+                <Image
+                  src="/svg/chat.svg"
+                  alt="send"
+                  className="mr-8"
+                  width={22}
+                  height={22}
+                />
+              </button>
             </div>
           </div>
         )}
