@@ -18,6 +18,9 @@ interface that allows riders to request rides and drivers to offer their service
 
 ## Features of JoyRide
 
+![featurescover](https://user-images.githubusercontent.com/75177362/235335541-4fdaf3b9-d3c0-45ae-ae9a-60124106d7c1.png)
+
+
 1. **User friendly ride system interface** : The platform provides easy to use interface to request and book rides, navigate and pay securely.  
 2. **Language translation In-app messaging support** : The platform allows riders and drivers to communicate and exchange information. We make it much more accessible by enabling language translation.  
 3. **Route optimization and ride mapping system using Google Map API's** : It makes use of Google Map API's to efficiently map rides and optimize routes to minimize travel time.   
@@ -35,3 +38,6 @@ Team members are :
 [2. Anmol Munnolli](https://github.com/anmolmunnolli)  
 [3. Mukul Singh](https://github.com/Z0XM)  
 [4. Imtiyaz Ahmed](https://github.com/mrimti01)
+
+![thankucover](https://user-images.githubusercontent.com/75177362/235335547-16c2e7e8-e3cb-441d-8b8e-eb0a28770c6f.png)
+
