@@ -45,22 +45,26 @@ docker run -p 3000:3000 joyride
 
 ## Tech Stack
 
+- TypeScript
 - ReactJS
 - NextJS
 - TailwindCSS
+- TRPC
 - Python - Flask
 - Sklearn
 - Docker
 - TensorFlow
 - NLTK
+- Streamlit
 - Deployed on [Vercel](https://joyride-eight.vercel.app/)
 - Google APIs
+- PlanetScale DB + Prisma (MySQL)
 
 ## Team Details
 
 **Team Name - Ciphers**  
 
-Team members are :  
+Team members are :  https://www.qrfy.com
 [1. Tarun Jain](https://github.com/lucifertrj)  
 [2. Anmol Munnolli](https://github.com/anmolmunnolli)  
 [3. Mukul Singh](https://github.com/Z0XM)  
