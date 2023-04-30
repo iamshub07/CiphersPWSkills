@@ -43,6 +43,19 @@ docker run -p 3000:3000 joyride
 6. **Fully functional safety features with integrated vehicle checks and insurance coverage** :  Our platform focuses on security by ensuring that each driver has required documents and even allowing the riders to view this documents. Also integrated ML options.
 7. **Sentiment analysis of the user reviews** : Using sentiment analysis we are checking whether the reviews submitted by the users are positive or negative and clustering the similar ones.   
 
+## Tech Stack
+
+- ReactJS
+- NextJS
+- TailwindCSS
+- Python - Flask
+- Sklearn
+- Docker
+- TensorFlow
+- NLTK
+- Deployed on [Vercel](https://joyride-eight.vercel.app/)
+- Google APIs
+
 ## Team Details
 
 **Team Name - Ciphers**  
