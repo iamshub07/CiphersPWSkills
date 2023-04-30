@@ -9,6 +9,7 @@ export const env = createEnv({
   server: {
     DATABASE_URL: z.string().url(),
     GMAP_KEY: z.string(),
+    RATING_URL: z.string().url(),
     NODE_ENV: z.enum(["development", "test", "production"]),
   },
 
@@ -29,6 +30,7 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
     GMAP_KEY: process.env.GMAP_KEY,
+    RATING_URL: process.env.RATING_URL,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
 });

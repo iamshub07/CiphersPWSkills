@@ -16,9 +16,11 @@ export const googleRouter = createTRPCRouter({
   rating: publicProcedure
     .input(z.object({ message: z.string() }))
     .query(async ({ input }) => {
-      const url = `http://127.0.0.1:5000/rating?message${input.message}`;
+      const url = `${env.RATING_URL}/rating?message=${input.message}`;
       const res = await axios.get(url);
-      return JSON.stringify(res.data);
+      console.log(res.data);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return res.data;
     }),
   search: publicProcedure
     .input(z.object({ search: z.string() }))
