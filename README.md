@@ -76,6 +76,8 @@ Team members are :  https://www.qrfy.com
 [3. Mukul Singh](https://github.com/Z0XM)  
 [4. Imtiyaz Ahmed](https://github.com/mrimti01)
 
+## Visit our Website: [Joyride- Trying to change the ride experience](https://joyride-eight.vercel.app/)
+## View our Video Demo: [Joyride Demo](https://drive.google.com/file/d/153psN4VGz0l4vdvQrxtkNTswT4fTpyXp/view?usp=sharing)
 ## View our Presentation: [Joyride Presentation](https://docs.google.com/presentation/d/1GrrzThJkOAfwFCjwwdLpCZFCLo0o1nNM/edit?usp=sharing&ouid=117663465741610871697&rtpof=true&sd=true)
 
 ![thankucover](https://user-images.githubusercontent.com/75177362/235335547-16c2e7e8-e3cb-441d-8b8e-eb0a28770c6f.png)
