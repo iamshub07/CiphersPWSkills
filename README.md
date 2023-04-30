@@ -16,6 +16,16 @@ interface that allows riders to request rides and drivers to offer their service
 
 **JoyRide** is our solution to this Ride - Sharing Platform problem statement.
 
+## Run on Docker
+
+```bash
+docker build -t joyride .
+```
+
+```bash
+docker run -p 3000:3000 joyride
+```
+
 ## Features of JoyRide
 
 ![featurescover](https://user-images.githubusercontent.com/75177362/235335541-4fdaf3b9-d3c0-45ae-ae9a-60124106d7c1.png)
