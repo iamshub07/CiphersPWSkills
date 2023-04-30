@@ -515,7 +515,13 @@ const UserProfile = () => {
 
         {!showChat && (
           <Map
-            mode={bookingState === "onway" ? "rider" : mapMode}
+            mode={
+              bookingState === "onway"
+                ? "rider"
+                : bookingState === "journey"
+                ? "journey"
+                : mapMode
+            }
             origin={pickRef.current?.value.replaceAll(" ", "%20") ?? ""}
             destination={destRef.current?.value.replaceAll(" ", "%20") ?? ""}
             search={mapSearch.replaceAll(" ", "%20")}
