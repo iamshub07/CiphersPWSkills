@@ -26,6 +26,10 @@ docker build -t joyride .
 docker run -p 3000:3000 joyride
 ```
 
+## MLOps - Experiment Tracking
+
+### [See Model Analysis Report](https://api.wandb.ai/links/tarunwandb/l4aox03z)
+
 ## Features of JoyRide
 
 ![featurescover](https://user-images.githubusercontent.com/75177362/235335541-4fdaf3b9-d3c0-45ae-ae9a-60124106d7c1.png)
