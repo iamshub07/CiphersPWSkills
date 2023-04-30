@@ -19,12 +19,18 @@ interface that allows riders to request rides and drivers to offer their service
 ## Run on Docker
 
 ```bash
+git clone https://github.com/lucifertrj/CiphersPWSkills.git
+```
+
+```bash
 docker build -t joyride .
 ```
 
 ```bash
 docker run -p 3000:3000 joyride
 ```
+
+> :warning: **Create an .env file in the web directory**: Be very careful here!
 
 ## MLOps - Experiment Tracking
 
@@ -69,6 +75,8 @@ Team members are :  https://www.qrfy.com
 [2. Anmol Munnolli](https://github.com/anmolmunnolli)  
 [3. Mukul Singh](https://github.com/Z0XM)  
 [4. Imtiyaz Ahmed](https://github.com/mrimti01)
+
+## View our Presentation: [Joyride Presentation](https://docs.google.com/presentation/d/1GrrzThJkOAfwFCjwwdLpCZFCLo0o1nNM/edit?usp=sharing&ouid=117663465741610871697&rtpof=true&sd=true)
 
 ![thankucover](https://user-images.githubusercontent.com/75177362/235335547-16c2e7e8-e3cb-441d-8b8e-eb0a28770c6f.png)
 
