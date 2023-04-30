@@ -3,8 +3,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 import pandas as pd
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import nltk
 
 app = Flask(__name__)
+
+nltk.download('vader_lexicon')
 
 df = pd.read_csv("comcast_consumeraffairs_complaints.csv")
 df.dropna(inplace=True)
@@ -21,14 +24,18 @@ SA = SentimentIntensityAnalyzer()
 model = KMeans(n_clusters=5)
 model.fit(X)
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+# @app.route('/')
+# def home():
+#     return render_template('index.html')
 
-@app.route('/cluster', methods=['POST'])
+@app.route('/rating', methods=['GET'])
 def cluster():
-    new_text = [request.form['message']]
-    new_X = vectorizer.transform(new_text)
+    # new_text = [request.form['message']]
+
+    new_text = request.args.get('message') 
+    print(new_text)
+    new_X = vectorizer.transform(list(new_text))
+    print(new_X)
 
     # Train the model on the original dataset
     model = KMeans(n_clusters=5)
@@ -53,8 +60,8 @@ def cluster():
         else:
             sentiment_scores.append('pos')
     
-    return render_template('results.html',similar_message=similar_message,top_3_comments=zip(top_3_comments,sentiment_scores))
+    return {"similar_message":similar_message, "top_3_comments":top_3_comments, "scores":sentiment_scores}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 

@@ -13,6 +13,13 @@ export const googleRouter = createTRPCRouter({
         greeting: `Hello ${input.text}`,
       };
     }),
+  rating: publicProcedure
+    .input(z.object({ message: z.string() }))
+    .query(async ({ input }) => {
+      const url = `http://127.0.0.1:5000/rating?message${input.message}`;
+      const res = await axios.get(url);
+      return JSON.stringify(res.data);
+    }),
   search: publicProcedure
     .input(z.object({ search: z.string() }))
     .query(({ input }) => {
