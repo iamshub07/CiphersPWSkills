@@ -36,7 +36,7 @@ docker run -p 3000:3000 joyride
 3. **Route optimization and ride mapping system using Google Map API's** : It makes use of Google Map API's to efficiently map rides and optimize routes to minimize travel time.   
 4. **Custom driver profiles** : The platform enables custom driver profiles showcasing necessary information about the driver.
 5. **Drivers dashboard analysis** : Users will be able to view and access necessary information about the driver like number of rides, distance travelled, rating, etc.
-6. **Fully functional safety features with integrated vehicle checks and insurance coverage** :  Our platform focuses on security by ensuring that each driver has required documents and even allowing the riders to view this documents.
+6. **Fully functional safety features with integrated vehicle checks and insurance coverage** :  Our platform focuses on security by ensuring that each driver has required documents and even allowing the riders to view this documents. Also integrated ML options.
 7. **Sentiment analysis of the user reviews** : Using sentiment analysis we are checking whether the reviews submitted by the users are positive or negative and clustering the similar ones.   
 
 ## Team Details
